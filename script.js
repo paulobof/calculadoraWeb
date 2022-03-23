@@ -16,17 +16,19 @@ const atualizarDisplay = (texto)  => {
     }
     else{
         display.textContent += texto;      
-        }   
-     
+    }   
 }
 
-const inserirNumero = (event) => atualizarDisplay(event.target.textContent);
+const inserirNumero = (event) => {
+    atualizarDisplay(event.target.textContent);
+    virgulaSet = false; 
+}
 
 teclasNumericas.forEach((tecla) => tecla.addEventListener('click', inserirNumero));
 
 const selecionaOperador = (event) => {
     numeroNovo = true;
-    virgulaSet = false;
+    virgulaSet = true; 
     operador = event.target.textContent;
     numeroAnterior = display.textContent;
 }
@@ -37,6 +39,7 @@ const calcular = () => {
     const numeroAtual = display.textContent;
     const resultado = eval(`${numeroAnterior}${operador}${numeroAtual}`); //usando template string
     numeroNovo = true;
+    virgulaSet = true; 
     atualizarDisplay(resultado);
 }
 
